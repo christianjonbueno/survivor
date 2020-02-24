@@ -1,0 +1,167 @@
+.main {
+  margin-bottom: 30px;
+}
+.mainImageContainer {
+  text-align: center;
+  color: white;
+}
+.mainImage {
+  width: 50%;
+}
+.playerContainer {
+  display: inline-block;
+  background-color: rgb(174, 195, 207);
+  color: black;
+  width: 250px;
+  height: 320px;
+  margin-bottom: 25px;
+  font-size: 12px;
+  text-align: center;
+  vertical-align: top;
+  border: 1px solid rgb(106, 116, 122);
+}
+.playerName {
+  font-size: 15px;
+  font-weight: bold;
+}
+.playerImage {
+  width: 50%;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 7px 7px 12px 0px rgba(0,0,0,0.56);
+  -moz-box-shadow: 7px 7px 12px 0px rgba(0,0,0,0.56);
+  box-shadow: 7px 7px 12px 0px rgba(0,0,0,0.56);
+}
+.hoveredPlayer {
+  width: 40%;
+  border-radius: 50%;
+}
+.userImage {
+  border-radius: 25px;
+  width: 30%;
+}
+/* ------------------------------MAIN------------------------------------------- */
+.logo {
+  width: 100%;
+  margin-bottom: 25px;
+}
+.mainContainer {
+  margin-top: 50px;
+  text-align: center;
+  color: white;
+  margin-left: 20px;
+}
+.mainUserContainer {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 2em;
+}
+.mainUserContainer .row .col {
+  padding: 0;
+}
+.mainUserPic {
+  width: 100%;
+  border-radius: 5%;
+  margin-bottom: 10px;
+}
+.mainPlayerList {
+  margin: 0;
+  padding: 0;
+}
+ol {
+  text-align: left;
+  font-size: 14px;
+}
+li {
+  list-style: none;
+  margin-bottom: 10px
+}
+.torch {
+  width: 28px;
+}
+.liPlayer:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 15px;
+  background-color: white;
+  color: black;
+  transition: 0.5s;
+}
+.card {
+  max-width: 50%;
+}
+.card-img {
+  margin: 10px;
+}
+.card-body {
+  text-align: left;
+  padding: 0;
+}
+.card-body p {
+  margin: 0;
+}
+.card-header {
+  color: black;
+}
+/* ------------------------------MAIN------------------------------------------- */
+
+/* ----------------------------SIDENAV------------------------------------------- */
+.sideNav {
+  position: absolute;
+  z-index: 100;
+  width: 200px;
+  height: 400px;
+  margin-left: 100px;
+}
+.list {
+  padding: 0;
+  text-align: left;
+}
+/* ----------------------------SIDENAV------------------------------------------- */
+
+/* ----------------------------TRIBES------------------------------------------- */
+.tribesContainer {
+  margin-top: 50px;
+  margin-left: 383px;
+  width: 65%;
+  text-align: center;
+  color: white;
+}
+.tribePic {
+  width: 100%;
+  border-radius: 2%;
+}
+/* ----------------------------TRIBES------------------------------------------- */
+
+/* ----------------------------TRADE------------------------------------------- */
+.tradeContainer {
+  margin-top: 50px;
+  margin-left: 383px;
+  width: 65%;
+  text-align: center;
+  color: white;
+}
+/* ----------------------------TRADE------------------------------------------- */
+
+/* ----------------------------Edit-------------------------------------------- */
+.editContainer {
+  margin-top: 50px;
+  margin-left: 383px;
+  width: 65%;
+  text-align: center;
+  color: white;
+}
+.editForm {
+  text-align: left;
+}
+.labels, .inputs {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
+}
+.labels label {
+  margin-bottom: 40px;
+}
+.editButton {
+  text-align: center;
+}
+/* ----------------------------Edit------------------------------------------- */
