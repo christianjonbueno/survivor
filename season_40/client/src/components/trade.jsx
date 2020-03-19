@@ -8,7 +8,7 @@ class Trade extends React.Component {
       list: [],
       chosenUser: this.props.usersList[0],
       chosenPlayer: {},
-      toUser: this.props.usersList[0]
+      toUser: this.props.usersList[1]
     }
     this.getUsers = this.getUsers.bind(this);
     this.fromUser = this.fromUser.bind(this);
@@ -27,7 +27,7 @@ class Trade extends React.Component {
         this.setState({
           list: list.data,
           chosenUser: list.data[0]
-        })
+        }, () => console.log(this.state))
       })
   }
 
@@ -36,18 +36,19 @@ class Trade extends React.Component {
       if (this.props.usersList[i].name === e.target.value) {
         this.setState({
           chosenUser: this.props.usersList[i]
-        });
+        }, () => console.log(this.state.chosenUser.players));
       }
     }
   }
 
   tradePlayer(e) {
     var playersList = this.state.chosenUser.players;
+    console.log(playersList);
     for (var k = 0; k < playersList.length; k++) {
       if (playersList[k].name === e.target.value) {
         this.setState({
           chosenPlayer: playersList[k]
-        });
+        }, () => console.log(this.state.chosenPlayer));
       }
     }
   }
@@ -65,29 +66,31 @@ class Trade extends React.Component {
   confirmTrade(e) {
     e.preventDefault();
     var user = this.state.toUser;
+    console.log(user)
     user.players.push(this.state.chosenPlayer);
     var confirmed = {
       players: user.players
     }
-    console.log(confirmed)
-    console.log(user)
+    console.log("confirmed to send: ", confirmed)
     // Axios.put(`/survivors/users/${user._id}`, confirmed)
-    //   .then((editedUser) => {
-    //     alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
-    //   })
-    //   .then(() => {
-    //     var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
-    //     var takenFrom = {
-    //       name: this.state.chosenUser.name,
-    //       image: this.state.chosenUser.image,
-    //       players: this.state.chosenUser.players.splice(idx, 1)
-    //     };
-    //     Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
-    //       .then((newUser) => {
-    //         document.getElementById('tradeForm').reset()
-    //         this.getUsers()
-    //       })
-    //   })
+      // .then((editedUser) => {
+        // alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
+      // })
+      // .then(() => {
+        var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
+        this.state.chosenUser.players.splice(idx, 1)
+        var takenFrom = {
+          name: this.state.chosenUser.name,
+          image: this.state.chosenUser.image,
+          players: this.state.chosenUser.players
+        };
+        console.log("From user's new players list: ", takenFrom)
+        // Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
+        //   .then((newUser) => {
+        //     document.getElementById('tradeForm').reset()
+        //     this.getUsers()
+          // })
+      // })
   }
 
   render() {
@@ -105,7 +108,7 @@ class Trade extends React.Component {
           </div>
           <div className="form-group">
             <label>Select the Players to trade:</label>
-            <select multiple className="form-control" onChange={this.tradePlayer}>
+            <select multiple className="form-control" onChange={this.tradePlayer} required>
               {this.state.chosenUser.players.map((player) => {
                 return <option>{player.name}</option>
               })}
@@ -115,7 +118,7 @@ class Trade extends React.Component {
             <label>Select a User to trade to:</label>
             <select className="form-control" onChange={this.toUser}>
               {this.state.list.map((user) => {
-                return <option>{user.name}</option>
+                {return user.name !== this.state.chosenUser.name ? <option>{user.name}</option> :null }
               })}
             </select>
           </div>
