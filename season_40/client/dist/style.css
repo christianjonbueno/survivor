@@ -164,4 +164,7 @@ li {
 .editButton {
   text-align: center;
 }
+.editCancel {
+  margin-right: 10px;
+}
 /* ----------------------------Edit------------------------------------------- */

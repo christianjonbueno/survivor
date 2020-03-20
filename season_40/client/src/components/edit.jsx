@@ -163,7 +163,7 @@ export default class Edit extends React.Component {
                     <br />
                     <input type="number" min="0" className="form-control" name="idols" defaultValue={this.state.player.idols} onChange={this.setChanges}></input>
                     <br />
-                    <input type="text" className="form-control" name="advantages" defaultValue={this.state.player.advantages} onChange={this.setChanges}></input>
+                    <textarea className="form-control" name="advantages" defaultValue={this.state.player.advantages} onChange={this.setChanges}></textarea>
                     <br />
                     <select className="form-control" name="extinction" onChange={this.setChanges}>
                       <option value={this.state.player.extinction}>{this.state.player.extinction.toString().toUpperCase()}</option>
@@ -176,7 +176,7 @@ export default class Edit extends React.Component {
                     </select>
                   </div>
                   <div className="editButton">
-                    <button type="button" className="btn btn-secondary" onClick={() => this.resetForm()}>Cancel</button>
+                    <button type="button" className="btn btn-secondary editCancel" onClick={() => this.resetForm()}>Cancel</button>
                     <button type="submit" className="btn btn-success">Submit</button>
                   </div>
                 </div>
