@@ -11,7 +11,7 @@ const PlayerCard = (props) => (
           <div className="card-body">
             <h5 className="card-header">{props.currentPlayer.name}</h5>
             <p className="card-text"><small className="text-muted">{props.currentPlayer.seasons}</small></p>
-            <table class="table table-sm">
+            <table className="table table-sm">
               <thead>
                 <tr>
                   <th scope="col">Tribe</th>

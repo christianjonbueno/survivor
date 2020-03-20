@@ -1,3 +1,6 @@
+.selection {
+  color: white;
+}
 .main {
   margin-bottom: 30px;
 }
@@ -40,6 +43,15 @@
   width: 30%;
 }
 /* ------------------------------MAIN------------------------------------------- */
+.seasonIcon {
+  width: 350px;
+  margin-bottom: 10px;
+}
+.seasonIcon:hover {
+  transition: 0.2s;
+  width: 370px;
+  cursor: pointer;
+}
 .logo {
   width: 100%;
   margin-bottom: 25px;
@@ -163,5 +175,8 @@ li {
 }
 .editButton {
   text-align: center;
+}
+.editCancel {
+  margin-right: 10px;
 }
 /* ----------------------------Edit------------------------------------------- */

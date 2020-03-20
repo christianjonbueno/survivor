@@ -31,7 +31,7 @@ class User extends React.Component {
             <div className="col">
               <ol className="mainPlayerList">
                 {this.props.user.players.map((player) => {
-                  return <li> 
+                  return <li key={player.id}> 
                     {!player.extinction ? (
                       <img className="torch" src="https://i.ya-webdesign.com/images/torch-transparent-animated-6.gif"/>)
                       :(<img className="torch" src="https://thumbs.gfycat.com/AmusedBriefHen-max-1mb.gif"/>)} 
