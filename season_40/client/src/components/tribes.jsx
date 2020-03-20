@@ -11,7 +11,7 @@ const Tribes = (props) => (
           <table className="table table-hover">
             <tbody>
             {props.players.map((player) => {
-              return <tr className="table-danger">
+              return <tr  key={player.id} className="table-danger">
                 {player.tribe === 'Dakal' ? (<td>{player.name}</td>):null}
               </tr>
             })}
@@ -25,7 +25,7 @@ const Tribes = (props) => (
           <table className="table table-hover">
             <tbody>
             {props.players.map((player) => {
-              return <tr className="table-primary">
+              return <tr  key={player.id} className="table-primary">
                 {player.tribe === 'Sele' ? (<td>{player.name}</td>):null}
               </tr>
             })}

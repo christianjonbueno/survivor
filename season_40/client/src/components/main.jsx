@@ -88,7 +88,7 @@ class Main extends React.Component {
           <div className="mainContainer container">
             <h1 className="display-3">Survivor 40: Winners at War</h1>
             {this.state.usersList.map((user) => {
-              return <User user={user} showPlayerStats={this.showPlayerStats}/>
+              return <User user={user} showPlayerStats={this.showPlayerStats} key={user.id}/>
             })}
             {this.state.showPlayer ? (
             <FadeIn>

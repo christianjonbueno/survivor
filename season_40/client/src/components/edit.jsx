@@ -15,13 +15,16 @@ export default class Edit extends React.Component {
       idols: 0,
       advantages: '',
       extinction: '',
-      eliminated: ''
+      eliminated: '',
+      flippedExt: false,
+      flippedEli: false
     };
     this.getUsers = this.getUsers.bind(this);
     this.showPlayers = this.showPlayers.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
     this.setChanges = this.setChanges.bind(this);
     this.submitChanges = this.submitChanges.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   };
 
   componentDidMount() {
@@ -52,17 +55,24 @@ export default class Edit extends React.Component {
 
   showEditForm(player) {
     this.setState({
-      form: true,
-      player: player,
-      tribe: player.tribe,
-      idols: player.idols,
-      advantages: player.advantages,
-      extinction: player.extinction,
-      eliminated: player.eliminated
-    }, () => console.log(this.state.player))
+      form: false
+    }, () => {
+      this.setState({
+        form: true,
+        player: player,
+        tribe: player.tribe,
+        idols: player.idols,
+        advantages: player.advantages,
+        extinction: player.extinction,
+        eliminated: player.eliminated,
+        flippedExt: !player.extinction,
+        flippedEli: !player.eliminated
+      })
+    })
   }
 
   setChanges(e) {
+    console.log(e.target)
     this.setState({
       [e.target.name]: e.target.value
     }, () => console.log(this.state))
@@ -76,8 +86,8 @@ export default class Edit extends React.Component {
       tribe: this.state.tribe,
       idols: this.state.idols,
       advantages: this.state.advantages,
-      extinction: this.state.extinction,
-      eliminated: this.state.eliminated,
+      extinction: JSON.parse(this.state.extinction),
+      eliminated: JSON.parse(this.state.eliminated),
       image: this.state.player.image,
       image2: this.state.player.image2,
       seasons: this.state.player.seasons,
@@ -93,9 +103,26 @@ export default class Edit extends React.Component {
     Axios.put(`/survivors/users/${toUpdate._id}`, toSend)
       .then(() => {
         alert(`${changes.name}'s stats were updated`);
+        this.setState({
+          form: false,
+          showPlayersList: false
+        })
         this.getUsers();
-        document.getElementById('edits').reset();
       });
+  }
+  
+  resetForm() {
+    this.setState({
+      form: false,
+      player: {},
+      tribe: '',
+      idols: 0,
+      advantages: '',
+      extinction: '',
+      eliminated: '',
+      flippedExt: false,
+      flippedEli: false
+    })
   }
 
   render() {
@@ -111,7 +138,7 @@ export default class Edit extends React.Component {
           </div>
           {this.state.showPlayersList ? (
             <div className="col-5"><h4>Step 2: Choose a Player </h4>{this.state.players.map((player) => {
-              return <p><button className="btn btn-info" onClick={() => this.showEditForm(player)}>{player.name}</button></p>
+              return <p key={player.id}><button className="btn btn-info" onClick={() => this.showEditForm(player)}>{player.name}</button></p>
             })}
             </div>
           ):null}
@@ -139,16 +166,17 @@ export default class Edit extends React.Component {
                     <input type="text" className="form-control" name="advantages" defaultValue={this.state.player.advantages} onChange={this.setChanges}></input>
                     <br />
                     <select className="form-control" name="extinction" onChange={this.setChanges}>
-                        <option value="false">False</option>
-                        <option value="true">True</option>
+                      <option value={this.state.player.extinction}>{this.state.player.extinction.toString().toUpperCase()}</option>
+                      <option value={!this.state.player.extinction}>{this.state.flippedExt.toString().toUpperCase()}</option>
                     </select>
                     <br />
                     <select className="form-control" name="eliminated" onChange={this.setChanges}>
-                      <option value="false">False</option>
-                      <option value="true">True</option>
+                      <option value={this.state.player.eliminated}>{this.state.player.eliminated.toString().toUpperCase()}</option>
+                      <option value={!this.state.player.eliminated}>{this.state.flippedEli.toString().toUpperCase()}</option>
                     </select>
                   </div>
                   <div className="editButton">
+                    <button type="button" className="btn btn-secondary" onClick={() => this.resetForm()}>Cancel</button>
                     <button type="submit" className="btn btn-success">Submit</button>
                   </div>
                 </div>

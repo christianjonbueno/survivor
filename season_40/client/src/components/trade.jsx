@@ -72,11 +72,11 @@ class Trade extends React.Component {
       players: user.players
     }
     console.log("confirmed to send: ", confirmed)
-    // Axios.put(`/survivors/users/${user._id}`, confirmed)
-      // .then((editedUser) => {
-        // alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
-      // })
-      // .then(() => {
+    Axios.put(`/survivors/users/${user._id}`, confirmed)
+      .then((editedUser) => {
+        alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
+      })
+      .then(() => {
         var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
         this.state.chosenUser.players.splice(idx, 1)
         var takenFrom = {
@@ -85,12 +85,12 @@ class Trade extends React.Component {
           players: this.state.chosenUser.players
         };
         console.log("From user's new players list: ", takenFrom)
-        // Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
-        //   .then((newUser) => {
-        //     document.getElementById('tradeForm').reset()
-        //     this.getUsers()
-          // })
-      // })
+        Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
+          .then((newUser) => {
+            document.getElementById('tradeForm').reset()
+            this.getUsers()
+          })
+      })
   }
 
   render() {
@@ -102,7 +102,7 @@ class Trade extends React.Component {
             <label>Select a User to trade from:</label>
             <select className="form-control" onChange={this.fromUser}>
               {this.state.list.map((user) => {
-                return <option>{user.name}</option>
+                return <option key={user.id} >{user.name}</option>
               })}
             </select>
           </div>
@@ -110,7 +110,7 @@ class Trade extends React.Component {
             <label>Select the Players to trade:</label>
             <select multiple className="form-control" onChange={this.tradePlayer} required>
               {this.state.chosenUser.players.map((player) => {
-                return <option>{player.name}</option>
+                return <option key={player.id} >{player.name}</option>
               })}
             </select>
           </div>
@@ -118,7 +118,7 @@ class Trade extends React.Component {
             <label>Select a User to trade to:</label>
             <select className="form-control" onChange={this.toUser}>
               {this.state.list.map((user) => {
-                {return user.name !== this.state.chosenUser.name ? <option>{user.name}</option> :null }
+                {return user.name !== this.state.chosenUser.name ? <option key={user.id} >{user.name}</option> :null }
               })}
             </select>
           </div>
