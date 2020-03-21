@@ -55,13 +55,13 @@ const controller = {
         bcrypt.compare(req.body.password, admin.password)
           .then(result => {
             if (admin.name != req.body.name || result === false) {
-              res.send({message: "Invalid Credentials"})
+              res.status(200).send({success: result, message: "Invalid Credentials"})
             } else {
-              res.send({message: "Success"})
+              res.status(200).send({success: result, message: "Success"})
             }
           })
       })
-      .catch((err) => res.send({message: "Invalid Credentials"}))
+      .catch((err) => res.status(402).send({message: "Invalid Credentials"}))
   }
 }
 

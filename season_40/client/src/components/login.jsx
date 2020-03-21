@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 
-export default function Login () {
+export default function Login (props) {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -11,8 +11,19 @@ export default function Login () {
     e.preventDefault();
     Axios.post(`/survivors/login`, {name, password})
       .then((data) => {
-        console.log(data.data)
         setMessage(data.data.message)
+        return data.data
+      })
+      .then((data) => {
+        if (data.success) {
+          setTimeout(() => {
+            setMessage("Now logging in...")
+          }, 800)
+          setTimeout(() => {
+            setMessage("")
+            props.loginSuccess()
+          }, 1600)
+        }
       })
     e.target.reset();
   };
@@ -25,8 +36,8 @@ export default function Login () {
         <br/>
         <button type="submit" className="btn btn-secondary">Submit</button>
         <br/>
-        <h4>{message}</h4>
       </div>
+      <h4 className="display-7">{message}</h4>
     </form>
   )
 

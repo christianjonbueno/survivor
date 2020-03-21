@@ -1,15 +1,18 @@
 import React from 'react';
 import Axios from 'axios';
+import Login from './login.jsx';
 
 class Trade extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isNotLogged: true,
       list: [],
       chosenUser: this.props.usersList[0],
       chosenPlayer: {},
       toUser: this.props.usersList[1]
     }
+    this.loginSuccess = this.loginSuccess.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.fromUser = this.fromUser.bind(this);
     this.tradePlayer = this.tradePlayer.bind(this);
@@ -21,13 +24,19 @@ class Trade extends React.Component {
     this.getUsers()
   }
 
+  loginSuccess() {
+    this.setState({
+      isNotLogged: !this.state.isNotLogged
+    })
+  }
+
   getUsers() {
     Axios.get('/survivors/users')
       .then((list) => {
         this.setState({
           list: list.data,
           chosenUser: list.data[0]
-        }, () => console.log(this.state))
+        })
       })
   }
 
@@ -82,6 +91,11 @@ class Trade extends React.Component {
     return(
       <div>
         <h1 className="display-3">Trade Players</h1>
+        {this.state.isNotLogged ? (
+        <div className="row d-flex justify-content-center">
+          <Login loginSuccess={this.loginSuccess}/>
+        </div>
+        ) : (
         <form onSubmit={this.confirmTrade} id="tradeForm">
           <div className="form-group">
             <label>Select a User to trade from:</label>
@@ -109,6 +123,7 @@ class Trade extends React.Component {
           </div>
           <button type="submit" className="btn btn-primary">Confirm</button>
         </form>
+        )}
       </div>
     )
   }

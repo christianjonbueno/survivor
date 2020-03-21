@@ -21,6 +21,7 @@ export default class Edit extends React.Component {
       flippedExt: false,
       flippedEli: false
     };
+    this.loginSuccess = this.loginSuccess.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.showPlayers = this.showPlayers.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
@@ -32,6 +33,12 @@ export default class Edit extends React.Component {
   componentDidMount() {
     this.getUsers();
   };
+
+  loginSuccess() {
+    this.setState({
+      isNotLogged: !this.state.isNotLogged
+    })
+  }
 
   getUsers() {
     Axios.get('/survivors/users')
@@ -91,7 +98,6 @@ export default class Edit extends React.Component {
     Axios.put(`/survivors/players/${this.state.player._id}`, changes)
       .then((updatedPlayer) => {
         alert(`${updatedPlayer.data.name}'s stats were updated`);
-        console.log(updatedPlayer.data)
         this.setState({
           form: false,
           showPlayersList: false
@@ -120,7 +126,7 @@ export default class Edit extends React.Component {
         <h1 className="display-3">Edit Players</h1>
         {this.state.isNotLogged ? (
         <div className="row d-flex justify-content-center">
-          <Login />
+          <Login loginSuccess={this.loginSuccess} />
         </div>
         ) : (
         <div className="row">
