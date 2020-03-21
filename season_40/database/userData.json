@@ -2,26 +2,26 @@
   {
     "name": "Christian",
     "image": "https://i.imgur.com/hikLi1a.jpg",
-    "players": []
+    "players": ["5e756753af12dd8b111ef1c2","5e756753af12dd8b111ef1bf","5e756753af12dd8b111ef1c0","5e756753af12dd8b111ef1b9"]
   },
   {
     "name": "Jake",
     "image": "https://i.imgur.com/zxNxmZY.jpg",
-    "players": []
+    "players": ["5e756753af12dd8b111ef1c9","5e756753af12dd8b111ef1bb","5e756753af12dd8b111ef1bd"]
   },
   {
     "name": "Nick",
     "image": "https://i.imgur.com/tDXXGWs.jpg",
-    "players": []
+    "players": ["5e756753af12dd8b111ef1cb","5e756753af12dd8b111ef1c1","5e756753af12dd8b111ef1bc","5e756753af12dd8b111ef1c4"]
   },
   {
     "name": "Austin",
     "image": "https://i.imgur.com/Nk1Zzkg.jpg",
-    "players": []
+    "players": ["5e756753af12dd8b111ef1c8","5e756753af12dd8b111ef1c6","5e756753af12dd8b111ef1ca","5e756753af12dd8b111ef1ba"]
   },
   {
     "name": "Bryan",
     "image": "https://i.imgur.com/0L3TxAm.jpg",
-    "players": []
+    "players": ["5e756753af12dd8b111ef1cc","5e756753af12dd8b111ef1c7","5e756753af12dd8b111ef1c5","5e756753af12dd8b111ef1c3","5e756753af12dd8b111ef1be"]
   }
 ]

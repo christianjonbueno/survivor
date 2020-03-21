@@ -1,4 +1,4 @@
-const schema = require('../database/schema');
+const schema = require('../database/models/schema');
 const db = require('../database');
 
 const controller = {
@@ -12,7 +12,7 @@ const controller = {
       })
   },
   getUsers : (req, res) => {
-    schema.User.find()
+    schema.User.find().populate("players")
       .then((list) => {
         res.status(201).send(list)
       })
@@ -32,8 +32,17 @@ const controller = {
           })
       })
   },
-  editUser : (req, res) => {
-    schema.User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+  addPlayerToUser : (req, res) => {
+    schema.User.findByIdAndUpdate(req.params.id, {$push: {players: req.body._id}}, {new:true})
+      .then((user) => {
+        res.status(202).send(user)
+      })
+      .catch((err) => {
+        res.status(402).send(err)
+      })
+  },
+  removePlayerFromUser : (req, res) => {
+    schema.User.findByIdAndUpdate(req.params.id, {$pull: {players: req.body._id}}, {new:true})
       .then((user) => {
         res.status(202).send(user)
       })

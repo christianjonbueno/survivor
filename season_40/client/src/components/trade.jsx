@@ -66,31 +66,39 @@ class Trade extends React.Component {
   confirmTrade(e) {
     e.preventDefault();
     var user = this.state.toUser;
-    console.log(user)
     user.players.push(this.state.chosenPlayer);
     var confirmed = {
       players: user.players
     }
-    console.log("confirmed to send: ", confirmed)
-    Axios.put(`/survivors/users/${user._id}`, confirmed)
-      .then((editedUser) => {
+    Axios.put(`/survivors/addPlayerToUser/${user._id}`, {_id: this.state.chosenPlayer._id})
+      .then(editedUser => {
         alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
-      })
-      .then(() => {
-        var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
-        this.state.chosenUser.players.splice(idx, 1)
-        var takenFrom = {
-          name: this.state.chosenUser.name,
-          image: this.state.chosenUser.image,
-          players: this.state.chosenUser.players
-        };
-        console.log("From user's new players list: ", takenFrom)
-        Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
-          .then((newUser) => {
+        Axios.put(`/survivors/removePlayerFromUser/${this.state.chosenUser._id}`, {_id: this.state.chosenPlayer._id})
+          .then(newUser => {
             document.getElementById('tradeForm').reset()
             this.getUsers()
           })
+          .catch(err => console.error(err))
       })
+    // Axios.put(`/survivors/users/${user._id}`, confirmed)
+    //   .then((editedUser) => {
+    //     alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
+    //   })
+    //   .then(() => {
+    //     var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
+    //     this.state.chosenUser.players.splice(idx, 1)
+    //     var takenFrom = {
+    //       name: this.state.chosenUser.name,
+    //       image: this.state.chosenUser.image,
+    //       players: this.state.chosenUser.players
+    //     };
+    //     console.log("From user's new players list: ", takenFrom)
+    //     Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
+    //       .then((newUser) => {
+    //         document.getElementById('tradeForm').reset()
+    //         this.getUsers()
+    //       })
+    //   })
   }
 
   render() {
