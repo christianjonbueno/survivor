@@ -97,7 +97,7 @@ class Main extends React.Component {
     }
     this.setState({
       [navItem]: true
-    });
+    },() => this.getUsers());
   }
   hideNav() {
     for (var nav in this.state) {

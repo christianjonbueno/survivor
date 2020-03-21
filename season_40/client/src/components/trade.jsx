@@ -36,7 +36,7 @@ class Trade extends React.Component {
       if (this.props.usersList[i].name === e.target.value) {
         this.setState({
           chosenUser: this.props.usersList[i]
-        }, () => console.log(this.state.chosenUser.players));
+        });
       }
     }
   }
@@ -48,7 +48,7 @@ class Trade extends React.Component {
       if (playersList[k].name === e.target.value) {
         this.setState({
           chosenPlayer: playersList[k]
-        }, () => console.log(this.state.chosenPlayer));
+        });
       }
     }
   }
@@ -66,10 +66,6 @@ class Trade extends React.Component {
   confirmTrade(e) {
     e.preventDefault();
     var user = this.state.toUser;
-    user.players.push(this.state.chosenPlayer);
-    var confirmed = {
-      players: user.players
-    }
     Axios.put(`/survivors/addPlayerToUser/${user._id}`, {_id: this.state.chosenPlayer._id})
       .then(editedUser => {
         alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
@@ -80,25 +76,6 @@ class Trade extends React.Component {
           })
           .catch(err => console.error(err))
       })
-    // Axios.put(`/survivors/users/${user._id}`, confirmed)
-    //   .then((editedUser) => {
-    //     alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
-    //   })
-    //   .then(() => {
-    //     var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
-    //     this.state.chosenUser.players.splice(idx, 1)
-    //     var takenFrom = {
-    //       name: this.state.chosenUser.name,
-    //       image: this.state.chosenUser.image,
-    //       players: this.state.chosenUser.players
-    //     };
-    //     console.log("From user's new players list: ", takenFrom)
-    //     Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
-    //       .then((newUser) => {
-    //         document.getElementById('tradeForm').reset()
-    //         this.getUsers()
-    //       })
-    //   })
   }
 
   render() {

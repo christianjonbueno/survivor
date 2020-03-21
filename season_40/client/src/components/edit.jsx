@@ -72,37 +72,24 @@ export default class Edit extends React.Component {
   }
 
   setChanges(e) {
-    console.log(e.target)
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   submitChanges(e) {
     e.preventDefault()
     var changes = {
-      _id: this.state.player._id,
-      name: this.state.player.name,
       tribe: this.state.tribe,
       idols: this.state.idols,
       advantages: this.state.advantages,
       extinction: JSON.parse(this.state.extinction),
       eliminated: JSON.parse(this.state.eliminated),
-      image: this.state.player.image,
-      image2: this.state.player.image2,
-      seasons: this.state.player.seasons,
-      chosen: this.state.player.chosen
     }
-    var idx = this.state.user.players.indexOf(this.state.player);
-    var toUpdate = this.state.user;
-    toUpdate.players.splice(idx, 1, changes);
-    var toSend = {
-      players: toUpdate.players
-    }
-    console.log(toSend)
-    Axios.put(`/survivors/users/${toUpdate._id}`, toSend)
-      .then(() => {
-        alert(`${changes.name}'s stats were updated`);
+    Axios.put(`/survivors/players/${this.state.player._id}`, changes)
+      .then((updatedPlayer) => {
+        alert(`${updatedPlayer.data.name}'s stats were updated`);
+        console.log(updatedPlayer.data)
         this.setState({
           form: false,
           showPlayersList: false

@@ -21,15 +21,12 @@ const controller = {
       })
   },
   editPlayer : (req, res) => {
-    schema.Player.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        schema.Player.findById(req.params.id)
-          .then((player) => {
-            res.status(202).send(player)
-          })
-          .catch((err) => {
-            res.status(402).send(err)
-          })
+    schema.Player.findByIdAndUpdate(req.params.id, req.body, {new:true})
+      .then((player) => {
+        res.status(202).send(player)
+      })
+      .catch((err) => {
+        res.status(402).send(err)
       })
   },
   addPlayerToUser : (req, res) => {
