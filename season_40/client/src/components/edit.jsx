@@ -1,10 +1,12 @@
 import React from 'react';
 import Axios from 'axios';
+import Login from './login.jsx';
 
 export default class Edit extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      isNotLogged: true,
       users: [],
       showPlayersList: false,
       user: {},
@@ -19,6 +21,7 @@ export default class Edit extends React.Component {
       flippedExt: false,
       flippedEli: false
     };
+    this.loginSuccess = this.loginSuccess.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.showPlayers = this.showPlayers.bind(this);
     this.showEditForm = this.showEditForm.bind(this);
@@ -30,6 +33,12 @@ export default class Edit extends React.Component {
   componentDidMount() {
     this.getUsers();
   };
+
+  loginSuccess() {
+    this.setState({
+      isNotLogged: !this.state.isNotLogged
+    })
+  }
 
   getUsers() {
     Axios.get('/survivors/users')
@@ -72,37 +81,23 @@ export default class Edit extends React.Component {
   }
 
   setChanges(e) {
-    console.log(e.target)
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   submitChanges(e) {
     e.preventDefault()
     var changes = {
-      _id: this.state.player._id,
-      name: this.state.player.name,
       tribe: this.state.tribe,
       idols: this.state.idols,
       advantages: this.state.advantages,
       extinction: JSON.parse(this.state.extinction),
       eliminated: JSON.parse(this.state.eliminated),
-      image: this.state.player.image,
-      image2: this.state.player.image2,
-      seasons: this.state.player.seasons,
-      chosen: this.state.player.chosen
     }
-    var idx = this.state.user.players.indexOf(this.state.player);
-    var toUpdate = this.state.user;
-    toUpdate.players.splice(idx, 1, changes);
-    var toSend = {
-      players: toUpdate.players
-    }
-    console.log(toSend)
-    Axios.put(`/survivors/users/${toUpdate._id}`, toSend)
-      .then(() => {
-        alert(`${changes.name}'s stats were updated`);
+    Axios.put(`/survivors/players/${this.state.player._id}`, changes)
+      .then((updatedPlayer) => {
+        alert(`${updatedPlayer.data.name}'s stats were updated`);
         this.setState({
           form: false,
           showPlayersList: false
@@ -129,6 +124,11 @@ export default class Edit extends React.Component {
     return(
       <div className="">
         <h1 className="display-3">Edit Players</h1>
+        {this.state.isNotLogged ? (
+        <div className="row d-flex justify-content-center">
+          <Login loginSuccess={this.loginSuccess} />
+        </div>
+        ) : (
         <div className="row">
           <div className="col-3">
             <h4>Step 1: Choose a User </h4>
@@ -184,6 +184,7 @@ export default class Edit extends React.Component {
             </div>
           ):null}
         </div>
+        )}
       </div>
     );
   };

@@ -15,7 +15,15 @@ Router
   .put(controller.editPlayer)
   
 Router
-  .route('/users/:id')
-  .put(controller.editUser)
+  .route('/addPlayerToUser/:id')
+  .put(controller.addPlayerToUser)
+
+Router
+  .route('/removePlayerFromUser/:id')
+  .put(controller.removePlayerFromUser)
+
+Router
+  .route('/login')
+  .post(controller.login)
 
 module.exports = Router;

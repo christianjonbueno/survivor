@@ -8,7 +8,8 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/bN6nOb6.jpg"
   },
   {
     "name": "Wendell Holland",
@@ -19,7 +20,8 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/90TXEDH.jpg"
   },
   {
     "name": "Amber Mariano",
@@ -28,31 +30,34 @@
     "image": "https://i.imgur.com/zRTadwd.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/cLYVphR.jpg"
   },
   {
     "name": "Kim Spradlin Wolfe",
     "tribe": "Dakal",
-    "seasons": "Winner of Season 24 (One World)",
-    "image": "https://i.imgur.com/PyZEeun.png",
-    "idols": 0,
+    "idols": 1,
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "image": "https://i.imgur.com/PyZEeun.png",
+    "image2": "https://i.imgur.com/IebXrtf.jpg",
+    "seasons": "Winner of Season 24 (One World)",
+    "chosen": true
   },
   {
     "name": "Sophie Clarke",
     "tribe": "Dakal",
     "seasons": "Winner of Season 23 (South Pacific)",
     "image": "https://i.imgur.com/pvb0qZ6.png",
-    "idols": 0,
+    "idols": "1",
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/8v9JJo0.jpg"
   },
   {
     "name": "Nick Wilson",
@@ -63,18 +68,20 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/qPmXUhI.jpg"
   },
   {
     "name": "Sarah Lacina",
     "tribe": "Dakal",
-    "seasons": "Winner of Season 34 (Game Changers), also appeared on Season 28 (Cagayan)",
-    "image": "https://i.imgur.com/nN0kPWq.png",
     "idols": 0,
-    "advantages": "None",
+    "advantages": "1. Steal a vote.",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "image": "https://i.imgur.com/nN0kPWq.png",
+    "image2": "https://i.imgur.com/bOdvq8b.jpg",
+    "seasons": "Winner of Season 34 (Game Changers), also appeared on Season 28 (Cagayan)",
+    "chosen": true
   },
   {
     "name": "Yul Kwon",
@@ -85,29 +92,32 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/fEBhNIm.jpg"
   },
   {
     "name": "Sandra Diaz-Twine",
     "tribe": "Dakal",
     "seasons": "Winner of Season 7 (Pearl Islands) AND Season 20 (Heroes vs. Villains), also appeared on Season 34 (Game Changers), and as an advisor on season 39 (Island of the Idols)",
     "image": "https://i.imgur.com/xZLdZyD.png",
-    "idols": 0,
+    "idols": 1,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/mmPk7yP.jpg"
   },
   {
     "name": "Tyson Apostol",
     "tribe": "Dakal",
-    "seasons": "Winner of Season 27 (Blood vs. Water), also appeared on Season 18 (Tocantins) and Season 20 (Heroes vs. Villains)",
-    "image": "https://i.imgur.com/09lz4fZ.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "image": "https://i.imgur.com/09lz4fZ.png",
+    "image2": "https://i.imgur.com/C8ImXcQ.jpg",
+    "seasons": "Winner of Season 27 (Blood vs. Water), also appeared on Season 18 (Tocantins) and Season 20 (Heroes vs. Villains)",
+    "chosen": true
   },
   {
     "name": "Boston Rob Mariano",
@@ -116,20 +126,22 @@
     "image": "https://i.imgur.com/inOqgw6.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/pANVPSQ.jpg"
   },
   {
     "name": "Natalie Anderson",
     "tribe": "Sele",
-    "seasons": "Winner of Season 29 (San Juan del Sur)",
-    "image": "https://i.imgur.com/7NpwuiO.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "image": "https://i.imgur.com/7NpwuiO.png",
+    "image2": "https://i.imgur.com/xMMofye.jpg",
+    "seasons": "Winner of Season 29 (San Juan del Sur)",
+    "chosen": true
   },
   {
     "name": "Ethan Zohn",
@@ -138,9 +150,10 @@
     "image": "https://i.imgur.com/WTVG8dj.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/fhFh19O.jpg"
   },
   {
     "name": "Parvati Shallow",
@@ -149,9 +162,10 @@
     "image": "https://i.imgur.com/vngzivb.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/Q4MXrwc.jpg"
   },
   {
     "name": "Ben Driebergen",
@@ -162,7 +176,8 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/pFLgASc.jpg"
   },
   {
     "name": "Michele Fitzgerald",
@@ -173,7 +188,8 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/4T1EpND.jpg"
   },
   {
     "name": "Danni Boatwright",
@@ -182,31 +198,34 @@
     "image": "https://i.imgur.com/IneGTEM.png",
     "idols": 0,
     "advantages": "None",
-    "extinction": false,
+    "extinction": true,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/ad2713X.jpg"
   },
   {
     "name": "Denise Stapley",
     "tribe": "Sele",
     "seasons": "Winner of Season 25 (Philippines)",
     "image": "https://i.imgur.com/IPj9csR.png",
-    "idols": 0,
+    "idols": "0",
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/GDrDZDg.jpg"
   },
   {
     "name": "Jeremy Collins",
     "tribe": "Sele",
-    "seasons": "Winner of Season 31 (Cambodia), also appeared on Season 29 (San Juan del Sur)",
-    "image": "https://i.imgur.com/9Gakx7b.png",
     "idols": 0,
-    "advantages": "None",
+    "advantages": "1. Allows a player to leave any Tribal before the votes are cast.",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "image": "https://i.imgur.com/9Gakx7b.png",
+    "seasons": "Winner of Season 31 (Cambodia), also appeared on Season 29 (San Juan del Sur)",
+    "chosen": true,
+    "image2": "https://i.imgur.com/iNszIi1.jpg"
   },
   {
     "name": "Adam Klein",
@@ -217,6 +236,7 @@
     "advantages": "None",
     "extinction": false,
     "eliminated": false,
-    "chosen": false
+    "chosen": true,
+    "image2": "https://i.imgur.com/vL3TFFd.jpg"
   }
 ]

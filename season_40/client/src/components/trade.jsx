@@ -1,15 +1,18 @@
 import React from 'react';
 import Axios from 'axios';
+import Login from './login.jsx';
 
 class Trade extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isNotLogged: true,
       list: [],
       chosenUser: this.props.usersList[0],
       chosenPlayer: {},
       toUser: this.props.usersList[1]
     }
+    this.loginSuccess = this.loginSuccess.bind(this);
     this.getUsers = this.getUsers.bind(this);
     this.fromUser = this.fromUser.bind(this);
     this.tradePlayer = this.tradePlayer.bind(this);
@@ -21,13 +24,19 @@ class Trade extends React.Component {
     this.getUsers()
   }
 
+  loginSuccess() {
+    this.setState({
+      isNotLogged: !this.state.isNotLogged
+    })
+  }
+
   getUsers() {
     Axios.get('/survivors/users')
       .then((list) => {
         this.setState({
           list: list.data,
           chosenUser: list.data[0]
-        }, () => console.log(this.state))
+        })
       })
   }
 
@@ -36,7 +45,7 @@ class Trade extends React.Component {
       if (this.props.usersList[i].name === e.target.value) {
         this.setState({
           chosenUser: this.props.usersList[i]
-        }, () => console.log(this.state.chosenUser.players));
+        });
       }
     }
   }
@@ -48,7 +57,7 @@ class Trade extends React.Component {
       if (playersList[k].name === e.target.value) {
         this.setState({
           chosenPlayer: playersList[k]
-        }, () => console.log(this.state.chosenPlayer));
+        });
       }
     }
   }
@@ -66,30 +75,15 @@ class Trade extends React.Component {
   confirmTrade(e) {
     e.preventDefault();
     var user = this.state.toUser;
-    console.log(user)
-    user.players.push(this.state.chosenPlayer);
-    var confirmed = {
-      players: user.players
-    }
-    console.log("confirmed to send: ", confirmed)
-    Axios.put(`/survivors/users/${user._id}`, confirmed)
-      .then((editedUser) => {
+    Axios.put(`/survivors/addPlayerToUser/${user._id}`, {_id: this.state.chosenPlayer._id})
+      .then(editedUser => {
         alert(`${this.state.chosenPlayer.name} was traded to ${editedUser.data.name}`)
-      })
-      .then(() => {
-        var idx = this.state.chosenUser.players.indexOf(this.state.chosenPlayer)
-        this.state.chosenUser.players.splice(idx, 1)
-        var takenFrom = {
-          name: this.state.chosenUser.name,
-          image: this.state.chosenUser.image,
-          players: this.state.chosenUser.players
-        };
-        console.log("From user's new players list: ", takenFrom)
-        Axios.put(`/survivors/users/${this.state.chosenUser._id}`, takenFrom)
-          .then((newUser) => {
+        Axios.put(`/survivors/removePlayerFromUser/${this.state.chosenUser._id}`, {_id: this.state.chosenPlayer._id})
+          .then(newUser => {
             document.getElementById('tradeForm').reset()
             this.getUsers()
           })
+          .catch(err => console.error(err))
       })
   }
 
@@ -97,6 +91,11 @@ class Trade extends React.Component {
     return(
       <div>
         <h1 className="display-3">Trade Players</h1>
+        {this.state.isNotLogged ? (
+        <div className="row d-flex justify-content-center">
+          <Login loginSuccess={this.loginSuccess}/>
+        </div>
+        ) : (
         <form onSubmit={this.confirmTrade} id="tradeForm">
           <div className="form-group">
             <label>Select a User to trade from:</label>
@@ -124,6 +123,7 @@ class Trade extends React.Component {
           </div>
           <button type="submit" className="btn btn-primary">Confirm</button>
         </form>
+        )}
       </div>
     )
   }
