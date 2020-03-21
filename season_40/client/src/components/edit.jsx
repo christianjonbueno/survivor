@@ -1,10 +1,12 @@
 import React from 'react';
 import Axios from 'axios';
+import Login from './login.jsx';
 
 export default class Edit extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      isNotLogged: true,
       users: [],
       showPlayersList: false,
       user: {},
@@ -116,6 +118,11 @@ export default class Edit extends React.Component {
     return(
       <div className="">
         <h1 className="display-3">Edit Players</h1>
+        {this.state.isNotLogged ? (
+        <div className="row d-flex justify-content-center">
+          <Login />
+        </div>
+        ) : (
         <div className="row">
           <div className="col-3">
             <h4>Step 1: Choose a User </h4>
@@ -171,6 +178,7 @@ export default class Edit extends React.Component {
             </div>
           ):null}
         </div>
+        )}
       </div>
     );
   };

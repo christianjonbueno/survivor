@@ -26,5 +26,11 @@ const userSchema = mongoose.Schema({
   }]
 })
 
+const adminSchema = mongoose.Schema({
+  name: String,
+  password: String
+});
+
 module.exports.Player = mongoose.model('Player', playerSchema);
 module.exports.User = mongoose.model('User', userSchema);
+module.exports.Admin = mongoose.model('Admin', adminSchema);

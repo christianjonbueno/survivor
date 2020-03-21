@@ -22,4 +22,8 @@ Router
   .route('/removePlayerFromUser/:id')
   .put(controller.removePlayerFromUser)
 
+Router
+  .route('/login')
+  .post(controller.login)
+
 module.exports = Router;

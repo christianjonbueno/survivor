@@ -1,5 +1,7 @@
 const schema = require('../database/models/schema');
 const db = require('../database');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const controller = {
   getPlayers : (req, res) => {
@@ -46,6 +48,20 @@ const controller = {
       .catch((err) => {
         res.status(402).send(err)
       })
+  },
+  login : (req, res) => {
+    schema.Admin.findOne({name:req.body.name})
+      .then((admin) => {
+        bcrypt.compare(req.body.password, admin.password)
+          .then(result => {
+            if (admin.name != req.body.name || result === false) {
+              res.send({message: "Invalid Credentials"})
+            } else {
+              res.send({message: "Success"})
+            }
+          })
+      })
+      .catch((err) => res.send({message: "Invalid Credentials"}))
   }
 }
 
